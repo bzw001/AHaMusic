@@ -1,0 +1,177 @@
+
+body {background: #000; background-position: center; margin: 25px 0}
+
+.blur {border-radius: 10px; padding: 10px; }
+
+p {color: #38525a; font-family:Georgia, "Times New Roman", Times, serif}
+h1,h2,h3,h4 {font-family:'Griffy',sans-serif; font-weight: normal; color: #38525a}
+
+.button {background:#F4B800; border-color: #000; font-family:'Griffy',sans-serif; color: #000}
+
+.panel {background: #fafafa}
+
+.panel.callout {background: #FAE6E1; border: 1px solid white; border-radius: 10px}
+
+.panel.callout p {color: #FFF}
+
+h1.heading_supersize {font-size: 64px; text-align:center; font-weight: normal; line-height: normal}
+h2.heading_largesize {font-size: 44px; text-align:center; font-weight: normal}
+
+
+hr {
+    border-color: #FFF;
+}
+
+
+.nav-bar {margin-top: 0; background: none}
+.nav-bar > li {border: 0; padding: 0; font-family: 'Griffy',sans-serif; letter-spacing: 2px; box-shadow: none}
+.nav-bar > li > a:first-child {font-size: 16px; text-transform: uppercase; padding: 25px}
+.nav-bar > li:last-child {border: 0; box-shadow: none}
+.nav-bar > li.active:hover { background: #F4B800; cursor: default}
+.nav-bar > li:hover { background: #F4B800; color: #FFF;         
+        -webkit-transition: all .2s ease-in-out;
+        -moz-transition: all .2s ease-in-out;
+        -ms-transition: all .2s ease-in-out;
+        -o-transition: all .2s ease-in-out;
+        transition: all .2s ease-in-out; 
+}
+
+.nav-bar > li > a { color: #F4B800}
+.nav-bar > li > a:hover { color: #000;}
+
+.nav-bar > li.has-flyout > a:first-child:after { content: ""; display: block; width: 0; height: 0; border: solid 4px; border-color: #F4B800 transparent transparent transparent; position: absolute; right: 20px; top: 44px; }
+
+.nav-bar > li.has-flyout > a:hover:first-child:after { content: ""; display: block; width: 0; height: 0; border: solid 4px; border-color: #000 transparent transparent transparent; position: absolute; right: 20px; top: 43px; }
+
+
+.flyout {background: #F4B800; border-radius: 5px; border: 0; margin-top: 25px; box-shadow: 0 3px 10px rgba(0, 0, 0, 0.7);}
+
+ul.flyout li, .nav-bar li ul li { border-left: 0}
+ul.flyout li a, .nav-bar li ul li a { background: #F4B800; border: 0; font-size: 16px;}
+ul.flyout li a:hover, .nav-bar li ul li a:hover { background: #960000; color: #000; border: 0;         
+        -webkit-transition: all .2s ease-in-out;
+        -moz-transition: all .2s ease-in-out;
+        -ms-transition: all .2s ease-in-out;
+        -o-transition: all .2s ease-in-out;
+        transition: all .2s ease-in-out; 
+		}
+		
+/* gallery menu */
+.copyrights{text-indent:-9999px;height:0;line-height:0;font-size:0;overflow:hidden;}
+.gallery-nav-bar {list-style:none; text-align: center; padding-top:10px; font-family: 'Open Sans Condensed',sans-serif; letter-spacing: 2px; text-transform: uppercase}
+.gallery-nav-bar li {display: inline-block; margin-right: 1px}
+
+.gallery-nav-bar li {padding: 3px 12px}
+
+.gallery-nav-bar li a {color: #000; padding: 3px 12px}
+
+.gallery-nav-bar li a:hover {background: #C02702; color: #FFF; padding: 3px 12px; border-radius: 3px}
+
+
+/* footer menu */
+
+.footer_menu {text-align:center; border-top: 1px dashed #999; margin: 25px 0 0; padding: 20px 0}
+.footer_menu li {display: inline; list-style: none; margin-right: 20px}
+.footer_menu li a {color: #F4B800}
+
+thead th{
+        color: #fff !important;
+        text-align: center !important;
+}
+
+table tbody tr:nth-child(even){
+    background-color: rgba(0, 0, 0, 0);
+}
+tr td{
+        text-align: center !important;
+        color: #37d2ff !important;
+}
+.lrc{
+        overflow-y: auto;
+        overflow-x: hidden;
+        position: relative;
+        /*overflow: hidden;*/
+}
+#lrc{
+        width: 100%;
+        position: absolute;
+        padding-top: 80px;
+}
+#lrc .gl{
+        color:#37d2ff !important;
+}
+#lrc  p{
+        color:#fff !important;
+        text-align: center !important;
+}
+.gl{
+        color:#37d2ff !important;
+}
+
+.musicForm{
+    display: none;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background-color: rgba(55, 210, 255, 0.58);
+}
+
+.musicForm ul{
+        margin-top:50%;
+        list-style: none;
+        outline: none;
+}
+
+.musicForm li{
+    text-align: center;
+    width: 60%;
+}
+.musicForm li label{
+    color: #fff;
+}
+
+.musicForm li{
+        color: #fff;
+        text-decoration: none;
+}
+.musicForm li input{
+    border: none;
+    background-color: #72dfff;
+    margin-bottom: 5px;
+    border-radius: 4px;
+    color: #424242;
+}
+.musicForm p{
+    color: #fff;
+}
+
+#u_file{
+    background-color:inherit !important;
+}
+
+#submit{
+    margin: 0 auto;
+    width: 100%;
+    height: 30px;
+    /*width: 60%;*/
+}
+
+.icon-logout{
+    width: 50px;
+    display: block;
+    font-size: 20px;
+    color:transparent;
+
+}
+
+.logout{
+    position: absolute;
+    top: 3px;
+    right:10px;
+    font-size: 16px;
+}
+.icon-logout{
+    color: inherit;
+}

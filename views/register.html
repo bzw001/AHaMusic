@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>不错呦</title>
+<meta name="author" content="DeathGhost">
+<link rel="stylesheet" type="text/css" href="/public/css/login_style.css" tppabs="css/style.css">
+<style>
+body{height:100%;background:#16a085;overflow:hidden;}
+canvas{z-index:-1;position:absolute;}
+</style>
+<script src="/public/js/jquery.js"></script>
+<!--<script src="/public/js/verificationNumbers.js"></script>-->
+<script src="/public/js/Particleground.js"></script>
+<script>
+$(document).ready(function() {
+  //粒子背景特效
+  $('body').particleground({
+    dotColor: '#5cbdaa',
+    lineColor: '#5cbdaa'
+  });
+  //验证码
+//  createCode();
+  //测试提交，对接程序删除即可
+//  $(".submit_btn").click(function(){
+//	  location.href="javascrpt:;"/*tpa=http://***index.html*/;
+//	  });
+});
+</script>
+</head>
+<body>
+<dl class="admin_login">
+ <dt>
+  <strong>啊哈音乐</strong>
+  <em>A Ha music</em>
+ </dt>
+    <form  id="login_form">
+        <p class="reminder"></p>
+        <dd class="user_icon">
+            <input type="text" placeholder="账号" class="login_txtbx" name="username">
+        </dd>
+        <dd class="pwd_icon">
+            <input type="password" placeholder="密码" class="login_txtbx" name="password">
+        </dd>
+        <dd class="email_icon">
+            <input type="text" placeholder="邮箱" class="login_txtbx" name="email" id="email">
+        </dd>
+        <dd class="val_icon">
+            <div class="checkcode">
+                <input type="text" id="J_codetext" placeholder="验证码" maxlength="4" class="login_txtbx" name="vcode">
+                <!--<canvas class="J_codeimg" id="myCanvas" onclick="createCode()">对不起，您的浏览器不支持canvas，请下载最新版浏览器!</canvas>-->
+                <img src="/getCaptchaPng" alt="" style="width:36%;height:100%;background-color: #5cbdaa;" onclick="this.src='/getCaptchaPng'+'?'+(new Date())"/>
+            </div>
+
+        </dd>
+        <dd class="rememberMe">
+            <input type="checkbox"  class="login_txtbx" name="rememberMe"><a style="position: relative;bottom: 5px;color: #fff;">同意用户者协议</a>
+        </dd>
+        <dd>
+            <input type="submit" value="立即注册" class="submit_btn" >
+        </dd>
+    </form>
+ <dd>
+<p>适用浏览器：360、FireFox、Chrome、Safari、Opera、傲游、搜狗、世界之窗. 不支持IE8及以下浏览器。</p>
+ </dd>
+</dl>
+<!--<script src="/public/js/jquery.js"></script>-->
+<script>
+    var flag=true;
+    $('#email').on('blur',function(){
+        var email=$('#email').val();
+        var reg=/^[_a-zA-Z0-9_-]+@([_a-zA-Z0-9_-]+\.)+[a-zA-Z]{2,3}$/;
+        if(!reg.test(email)){
+            $('.reminder').html('请输入正确的邮箱');
+            flag=false;
+            return;
+        }
+        flag=true;
+    });
+ $('#login_form').on('submit',function(e){
+     e.preventDefault();
+     if(!flag) return;
+     $.ajax({
+         type:'post',
+         url:'/doRegister',
+         data:$(this).serialize(),
+         success:function(data){
+             if(data.code==='200'){
+                 window.location='/login';
+             }else if(data.code==='002'){
+                 $('.reminder').html('用户名已经存在')
+             }
+         }
+     })
+ })
+</script>
+</body>
+</html>

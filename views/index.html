@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8" />
+
+  <!-- Set the viewport width to device width for mobile -->
+  <meta name="viewport" content="width=device-width" />
+
+  <title>哎呦音乐</title>
+  
+  <!-- Included CSS Files (Uncompressed) -->
+  <!--
+  <link rel="stylesheet" href="stylesheets/foundation.css">
+  -->
+  
+  <!-- Included CSS Files (Compressed) -->
+    <link rel="stylesheet" type="text/css" href="/public/css/icon.css" />
+    <link rel="stylesheet" href="/public/index/stylesheets/foundation.min.css">
+  <link rel="stylesheet" href="/public/index/stylesheets/main.css">
+  <link rel="stylesheet" href="/public/index/stylesheets/app.css">
+
+         <!-- HALLOWEEN STYLES -->
+		<link rel="stylesheet" href="/public/index/lib/css/jquery.maximage.css" type="text/css" media="screen" charset="utf-8" />
+
+		
+		<!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/public/index/lib/js/jquery.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/public/index/javascripts/modernizr.foundation.js"></script>
+
+  
+
+
+  <!-- IE Fix for HTML5 Tags -->
+  <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  
+
+
+</head>
+<body>
+
+  <div class="row blur" style="background-color:rgba(92,189,179,0.3)">
+    <!-- page wrap -->
+    <div class="twelve columns">
+
+        <div class="row" style="padding: 0 5%;position: relative;">
+            <img id="singerImag" src="" alt="" style="border-radius: 50%;width:10%;position: absolute;top: 10px;left:6%;"/>
+          <div class="twelve columns lrc"  style="width:100%;height:400px;border:2px solid #386165;border-radius:5px; ">
+                <div id="lrc"></div>
+          </div>
+        </div>
+        <div class="row">
+        <div class="twelve columns">
+        <h1 class="heading_supersize">Welcome to AHA music</h1>
+        </div>
+        </div>
+        <div class="mymusic">
+            <h3 style="color: #0dadde">我的音乐 :</h3>
+            <p id="add" style="display: block; width: 15%;height:26px;line-height: 26px; border-radius: 4px;background-color: #265c6d; color:#fff;text-align: center;margin-bottom: 10px;font-size:1rem ;cursor: pointer">增加音乐</p>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7">
+                    <table class="table table-striped table-hover" style="width:100%;background-color:rgba(92,189,179,0.3);">
+                        <thead style="background-color: #5cbdaa;color: #fff;">
+                        <th>编号</th>
+                        <th>歌曲标题</th>
+                        <th>歌手</th>
+                        <th>编辑</th>
+                        <th>删除</th>
+                        <th>播放</th>
+                        </thead>
+                        <tbody class="list_container" id="list_container">
+                        {{each musicList}}
+                        <tr>
+                            <td>{{$index+1}}</td>
+                            <td class="title">{{$value.title}}</td>
+                            <td class="singer">{{$value.singer}}</td>
+                            <td><a href="" class="edit" data-music_id="{{$value._id}}">编辑</a></td>
+                            <td><a class="del" href="" data-music_id="{{$value._id}}">删除</a></td>
+                            <td><span style="cursor:pointer" data-src="{{$value.musicSrc}}" data-imgsrc="{{$value.imgSrc}}" data-lrc="{{$value.lrc}}" class="glyphicon glyphicon-play-circle ply icon-video"></span></td>
+                        </tr>
+                        {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+                <div>
+                    <p>正在播放音乐:</p>
+                    <audio id="audio" autoplay src="" controls="controls"  style="width:100%">
+                    </audio>
+                </div>
+            </div>
+        </div>
+		  <!--<script type="text/javascript">-->
+          <!--//<![CDATA[-->
+          <!--$('ul#menu3').nav-bar();-->
+          <!--//]]>-->
+          <!--</script>-->
+
+      </div>
+      <div id="addMusic" class="musicForm">
+          <span class="close" style="position: absolute;color: #000;font-size: 20px;top:50px;right:20%;cursor: pointer">X</span>
+          <form id="addmusicForm" style="width: 30%;margin: 0 auto">
+              <ul>
+                  <li>添加歌曲</li>
+                  <li>
+                      <input type="text" id="title" name="title" placeholder="歌曲名"/>
+                  </li>
+                  <li>
+                      <input type="text" id="singer" name="singer" placeholder="歌手名"/>
+                  </li>
+                  <li>
+                      <label for="">歌曲文件</label>
+                      <input type="file" name="file" id="file" value="上传歌曲">
+                      <input type="hidden" name=""  src="">
+                  </li>
+                  <li>
+                      <input type="submit" value="提交歌曲" id="submit">
+                  </li>
+              </ul>
+          </form>
+      </div>
+      <div id="updateMusic" class="musicForm">
+          <span class="close" style="position: absolute;color: #000;font-size: 20px;top:50px;right:20%;cursor: pointer">X</span>
+          <form id="updatemusicForm" style="width: 30%;margin: 0 auto">
+              <ul>
+                  <li>编辑歌曲</li>
+                  <li>
+                      <input type="text" id="u_title" name="title" placeholder="歌曲名"/>
+                  </li>
+                  <li>
+                      <input type="text" id="u_singer" name="singer" placeholder="歌手名"/>
+                  </li>
+                  <li>
+                      <input type="submit" value="提交修改" id="u_submit">
+                  </li>
+              </ul>
+          </form>
+      </div>
+    </div><!-- end page wrap) -->
+  <div class="logout" >
+      <a href="/logout" class="icon-logout" ></a>
+  </div>
+    <!-- Included JS Files (Compressed) -->
+    <script src="/public/index/javascripts/foundation.min.js" type="text/javascript">
+</script> <!-- Initialize JS Plugins -->
+     <script src="/public/index/javascripts/app.js" type="text/javascript">
+</script>
+  <!-- MAX IMAGE -->
+        <div id="maximage">
+            <img src="/public/index/images/bg.jpg" alt="" width="1400" height="1050" />
+            <img src="/public/index/images/bg2.jpg" alt="" width="1400" height="1050" />
+            <img src="/public/index/images/bg3.jpg" alt="" width="1400" height="1050" />
+		</div>
+  		
+		<script src="/public/index/lib/js/jquery.cycle.all.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/public/index/lib/js/jquery.maximage.js" type="text/javascript" charset="utf-8"></script>
+		
+		<script type="text/javascript" charset="utf-8">
+			$(function(){
+				// Trigger maximage
+				jQuery('#maximage').maximage();
+                $('#add').on('click',function(){
+                    $('#addMusic').show();
+                });
+                $('.close').on('click',function(){
+                    $('#addMusic').hide();
+                });
+			});
+
+		</script>
+  <script src="/public/js/index.js"></script>
+  <script>
+      //可以采用同步与非同步方式
+      $('#addmusicForm').on('submit',function(e){
+          e.preventDefault();
+          if(!($('#title').val()||$('#singer').val()||$('#file').val())){
+              return;
+          }
+              var  formData=new FormData();
+
+          formData.append('data',$('#addmusicForm').serialize());
+          formData.append('file',$('#file').get(0).files[0]);
+
+          $.ajax({
+              type:'post',
+              url:'/uploadMusic',
+              data:formData,
+              contentType:false,
+              processData:false,
+              dataType:'json',
+              success:function(data){
+                  if(data.code==='200'){
+                      $('#addMusic').hide();
+                      window.location.reload();
+                  }
+              }
+
+          })
+      })
+
+      //编辑页面
+      var music_id='';
+      $('.close').on('click',function(){
+          $('#updateMusic').hide();
+      });
+      $('.edit').on('click',function(e){
+          e.preventDefault();
+          console.log('edit');
+          $('#updateMusic').show();
+          $('#u_title').val($(this).parent().siblings()[1].innerText);
+          $('#u_singer').val($(this).parent().siblings()[2].innerText);
+          music_id=$(e.target).attr('data-music_id');
+      });
+
+      /*删除音乐*/
+      $('.del').on('click',function(e){
+          e.preventDefault();
+          music_id=$(e.target).attr('data-music_id');
+          $.ajax({
+              type:'post',
+              url:'/deleteMusic',
+              data:{music_id:music_id},
+              dataType:'json',
+              success:function(data){
+                  if(data.code==='200'){
+                      window.location.reload();
+                  }
+              }
+          });
+      })
+      $('#updateMusic').on('submit',function(e){
+          e.preventDefault();
+          console.log(music_id);
+          var title=$('#u_title').val();
+          var singer=$('#u_singer').val();
+          if((!title||!singer)){
+              return;
+          }
+          console.log(title,singer);
+          $.ajax({
+              type:'post',
+              url:'/updateMusic',
+              data:{title:title,singer:singer,music_id:music_id},
+              dataType:'json',
+              success:function(data){
+                  if(data.code==='200'){
+                      $('#updateMusic').hide();
+                      window.location.reload();
+                  }
+              }
+
+          })
+      })
+  </script>
+  <!-- Google fonts -->
+  <link href='http://fonts.googleapis.com/css?family=Griffy' rel='stylesheet' type='text/css'>
+</body>
+</html>
